@@ -5,13 +5,13 @@ import subprocess
 import re
 
 def is_usb_mouse_connected():
-  # Get list of all USB devices and check if a mouse is connected
-  for device in psutil.disk_partitions():
-    if "usb" in device.device.lower():
-      # Check for mouse device in the output of xinput
-      result = subprocess.run(['xinput', 'list'], capture_output=True, text=True)
-      if "pointer" in result.stdout.lower():
-        return True
+  # Run xinput to list all input devices
+  result = subprocess.run(['xinput', 'list'], capture_output=True, text=True)
+  
+  # Check if a USB mouse is connected (detect pointer devices)
+  for line in result.stdout.splitlines():
+    if 'pointer' in line.lower() and 'usb' in line.lower():
+      return True
   return False
 
 def enable_touchpad_clicking():
@@ -50,12 +50,15 @@ def main():
       print("Touchpad not found!")
     else:
       print(f"Touchpad found and the device ID is {touchpad_device_id}")
-      if is_usb_mouse_connected():
-        print("USB mouse connected, disabling touchpad clicking.")
-        disable_touchpad_clicking()
-      else:
-        print("USB mouse not connected, enabling touchpad clicking.")
-        enable_touchpad_clicking()
+
+    print(is_usb_mouse_connected())
+
+      # if is_usb_mouse_connected():
+      #   print("USB mouse connected, disabling touchpad clicking.")
+      #   disable_touchpad_clicking()
+      # else:
+      #   print("USB mouse not connected, enabling touchpad clicking.")
+      #   enable_touchpad_clicking()
 
     time.sleep(1)  # Check every second
 
