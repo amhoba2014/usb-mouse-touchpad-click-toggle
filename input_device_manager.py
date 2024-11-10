@@ -1,6 +1,7 @@
 import subprocess
 import re
 
+
 class InputDeviceManager:
   
   @staticmethod
