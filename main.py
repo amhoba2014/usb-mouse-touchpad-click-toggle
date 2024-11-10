@@ -14,13 +14,13 @@ def is_usb_mouse_connected():
       return True
   return False
 
-def enable_touchpad_clicking():
+def enable_touchpad_clicking(device_id):
   # Enable touchpad clicking using xinput
-  subprocess.run(['xinput', 'set-prop', 'touchpad_device_id', 'libinput Click Method Enabled', '1', '0'])
+  subprocess.run(['xinput', 'set-prop', device_id, 'libinput Click Method Enabled', '1', '0'])
 
-def disable_touchpad_clicking():
+def disable_touchpad_clicking(device_id):
   # Disable touchpad clicking using xinput
-  subprocess.run(['xinput', 'set-prop', 'touchpad_device_id', 'libinput Click Method Enabled', '0', '0'])
+  subprocess.run(['xinput', 'set-prop', device_id, 'libinput Click Method Enabled', '0', '0'])
 
 
 def get_touchpad_device_id():
@@ -50,15 +50,12 @@ def main():
       print("Touchpad not found!")
     else:
       print(f"Touchpad found and the device ID is {touchpad_device_id}")
-
-    print(is_usb_mouse_connected())
-
-      # if is_usb_mouse_connected():
-      #   print("USB mouse connected, disabling touchpad clicking.")
-      #   disable_touchpad_clicking()
-      # else:
-      #   print("USB mouse not connected, enabling touchpad clicking.")
-      #   enable_touchpad_clicking()
+      if is_usb_mouse_connected():
+        print("USB mouse connected, disabling touchpad clicking.")
+        disable_touchpad_clicking(touchpad_device_id)
+      else:
+        print("USB mouse not connected, enabling touchpad clicking.")
+        enable_touchpad_clicking(touchpad_device_id)
 
     time.sleep(1)  # Check every second
 
