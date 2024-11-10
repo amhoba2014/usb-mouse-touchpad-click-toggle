@@ -15,12 +15,12 @@ def is_usb_mouse_connected():
   return False
 
 def enable_touchpad_clicking(device_id):
-  # Enable touchpad clicking using xinput
-  subprocess.run(['xinput', 'set-prop', device_id, 'libinput Click Method Enabled', '1', '0'])
+  # Enable tap-to-click using xinput
+  subprocess.run(['xinput', 'set-prop', device_id, 'libinput Tapping Enabled', '1'])
 
 def disable_touchpad_clicking(device_id):
-  # Disable touchpad clicking using xinput
-  subprocess.run(['xinput', 'set-prop', device_id, 'libinput Click Method Enabled', '0', '0'])
+  # Disable tap-to-click using xinput
+  subprocess.run(['xinput', 'set-prop', device_id, 'libinput Tapping Enabled', '0'])
 
 
 def get_touchpad_device_id():
