@@ -1,6 +1,6 @@
 import time
 
-from input_device_manager import InputDeviceManager
+from source.input_device_manager import InputDeviceManager
 
 def main():
   while True:
