@@ -32,22 +32,29 @@ def get_touchpad_device_id():
   return None
 
 def main():
-  # Identify the touchpad device id
-  touchpad_device_id = get_touchpad_device_id()
-  if not touchpad_device_id:
-    print("Touchpad not found!")
-    return
-
-  print(f"Touchpad device ID: {touchpad_device_id}")
+  touchpad_found = False  # Flag to track if the touchpad has been found
 
   while True:
-    if is_usb_mouse_connected():
-      print("USB mouse connected, disabling touchpad clicking.")
-      disable_touchpad_clicking()
+    # Identify the touchpad device id
+    touchpad_device_id = get_touchpad_device_id()
+
+    if not touchpad_device_id:
+      print("Touchpad not found!")
+      touchpad_found = False  # Reset the flag when the touchpad is not found
     else:
-      print("USB mouse not connected, enabling touchpad clicking.")
-      enable_touchpad_clicking()
-    
+      # Print the touchpad device ID only once when the touchpad is found
+      if not touchpad_found:
+        print(f"Touchpad found and the device ID is {touchpad_device_id}")
+        touchpad_found = True  # Set the flag to True after the touchpad is found
+
+    if touchpad_found:
+      if is_usb_mouse_connected():
+        print("USB mouse connected, disabling touchpad clicking.")
+        disable_touchpad_clicking()
+      else:
+        print("USB mouse not connected, enabling touchpad clicking.")
+        enable_touchpad_clicking()
+
     time.sleep(1)  # Check every second
 
 if __name__ == "__main__":
