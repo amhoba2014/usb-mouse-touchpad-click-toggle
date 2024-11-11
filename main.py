@@ -1,6 +1,6 @@
 import time
 
-from source.input_device_manager import InputDeviceManager
+from source.touchpad_tapping_manager import TouchpadTappingManager
 from source.config_manager import ConfigManager, DeviceConfig
 from source.xinput_utils import XinputUtils
 
@@ -60,20 +60,16 @@ def main():
     print("Perfect! We are setup! Please restart the script to continue!")
     print()
 
-  while True:
-    # Identify the touchpad device id
-    touchpad_device_id = InputDeviceManager.get_touchpad_device_id()
+  touchpad_tapping_manager = TouchpadTappingManager(configs.touchpad_xinput_id, configs.touchpad_tapping_enabled_prop)
 
-    if not touchpad_device_id:
-      print("Touchpad not found!")
+  while True:
+    is_usb_mouse_connected = len([x for x in XinputUtils.extract_xinput_devices() if x.name == configs.usb_mouse_xinput_name]) > 0
+    if is_usb_mouse_connected:
+      print("USB mouse connected, disabling touchpad clicking.")
+      touchpad_tapping_manager.disable()
     else:
-      print(f"Touchpad found and the device ID is {touchpad_device_id}")
-      if InputDeviceManager.is_usb_mouse_connected():
-        print("USB mouse connected, disabling touchpad clicking.")
-        InputDeviceManager.disable_touchpad_clicking(touchpad_device_id)
-      else:
-        print("USB mouse not connected, enabling touchpad clicking.")
-        InputDeviceManager.enable_touchpad_clicking(touchpad_device_id)
+      print("USB mouse not connected, enabling touchpad clicking.")
+      touchpad_tapping_manager.enable()
 
     time.sleep(1)  # Check every second
 
