@@ -24,7 +24,6 @@ class XInputProperty:
 
 
 class XinputUtils:
-
   @staticmethod
   def extract_xinput_devices() -> list[XInputDevice]:
     result = subprocess.run(['xinput', 'list'], capture_output=True, text=True)
