@@ -10,11 +10,11 @@ class DeviceConfig:
     touchpad_xinput_name: str,
     touchpad_xinput_id: str,
   ):
-    self.touchpad_tapping_enabled_prop = touchpad_tapping_enabled_prop
-    self.usb_mouse_xinput_name = usb_mouse_xinput_name
-    self.usb_mouse_xinput_id = usb_mouse_xinput_id
-    self.touchpad_xinput_name = touchpad_xinput_name
-    self.touchpad_xinput_id = touchpad_xinput_id
+    self.touchpad_tapping_enabled_prop: str = touchpad_tapping_enabled_prop
+    self.usb_mouse_xinput_name: str = usb_mouse_xinput_name
+    self.usb_mouse_xinput_id: str = usb_mouse_xinput_id
+    self.touchpad_xinput_name: str = touchpad_xinput_name
+    self.touchpad_xinput_id: str = touchpad_xinput_id
 
 class ConfigManager:
   CONFIG_DOT_ENV_PATH = ".env"

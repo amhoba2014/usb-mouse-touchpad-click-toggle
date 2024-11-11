@@ -1,12 +1,13 @@
 import re
 import subprocess
+from typing import Literal
 
 
 class XInputDevice:
-  def __init__(self, name: str, device_id: str, device_type: str):
-    self.name = name
-    self.device_id = device_id
-    self.device_type = device_type
+  def __init__(self, name: str, device_id: str, device_type: Literal["pointer", "keyboard"]):
+    self.name: str = name
+    self.device_id: str = device_id
+    self.device_type: Literal["pointer", "keyboard"] = device_type
 
   def __repr__(self):
     return f"XInputDevice(name={self.name}, device_id={self.device_id}, device_type={self.device_type})"
@@ -14,9 +15,9 @@ class XInputDevice:
 
 class XInputProperty:
   def __init__(self, name: str, property_id: str, value: str):
-    self.name = name
-    self.property_id = property_id
-    self.value = value
+    self.name: str = name
+    self.property_id: str = property_id
+    self.value: str = value
 
   def __repr__(self):
     return f"XInputProperty(name={self.name}, property_id={self.property_id}, value={self.value})"
