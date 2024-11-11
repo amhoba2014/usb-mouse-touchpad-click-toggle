@@ -45,13 +45,10 @@ def main():
       return
     chosen_touchpad_device_property = touchpad_device_properties[index]
     print("The chosen device property is:", chosen_touchpad_device_property.name)
-
-
-
-
-
-
-    return
+    # Setup finished:
+    print()
+    print("Perfect! We are setup! Let's start!")
+    print()
 
   while True:
     # Identify the touchpad device id
