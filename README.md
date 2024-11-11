@@ -23,17 +23,19 @@ The script runs in the background, checking every second for the status of the U
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/amhoba2014/usb-mouse-touchpad-click-toggle ;
-   cd usb-mouse-touchpad-click-toggle ;
+   git clone https://github.com/amhoba2014/usb-mouse-touchpad-click-toggle
+   cd usb-mouse-touchpad-click-toggle
    ```
 
 2. Install the required dependencies:
 
    ```bash
-   poetry install ;
-   ````
+   poetry install
+   ```
 
-3. Run the script:
+3. **Initial Setup**: The first time you run the script, it will automatically perform setup if the `.env` file is not present. This setup will guide you through selecting your USB mouse and touchpad devices and the specific property used to toggle tap-to-click functionality. Once completed, this configuration will be saved to a `.env` file for future use.
+
+4. Run the main script:
 
    ```bash
    poetry run python main.py
@@ -41,12 +43,35 @@ The script runs in the background, checking every second for the status of the U
 
 ## Usage
 
-Once the script is running, it will monitor the connection of the USB mouse and automatically toggle the touchpad click functionality every second.
+### Automatic Setup
+
+If the `.env` file is not found when the script is run, the setup process will be triggered automatically. This will guide you through the following steps:
+
+- **Select USB Mouse Device**: Choose the USB mouse from a list of connected pointer devices.
+- **Select Touchpad Device**: Choose the touchpad device.
+- **Select Tap-to-Click Property**: Choose the property that enables or disables tap-to-click functionality on the touchpad.
+
+These selections will be saved in the `.env` file for future runs.
+
+### Running the Script
+
+After the initial setup, run `main.py` as shown above. The script will monitor the USB mouse connection and automatically toggle the touchpad tap-to-click functionality:
 
 - If the USB mouse is connected, tap-to-click on the touchpad is **disabled**.
 - If the USB mouse is disconnected, tap-to-click is **enabled**.
 
 You can stop the script by pressing `CTRL + C` in the terminal.
+
+## Restarting Setup Process
+
+If you wish to manually retrigger the setup process, you can remove the `.env` file and run the script again:
+
+```bash
+rm .env
+poetry run python main.py
+```
+
+This script will guide you through selecting the devices and properties needed for configuration again and the `.env` file will be created accordingly.
 
 ## License
 
