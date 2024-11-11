@@ -1,6 +1,7 @@
 import os
 from typing import Optional
 
+
 class DeviceConfig:
   def __init__(
     self,
@@ -25,6 +26,7 @@ class DeviceConfig:
       f"touchpad_xinput_name={self.touchpad_xinput_name}, "
       f"touchpad_xinput_id={self.touchpad_xinput_id})"
     )
+
 
 class ConfigManager:
   CONFIG_DOT_ENV_PATH = ".env"

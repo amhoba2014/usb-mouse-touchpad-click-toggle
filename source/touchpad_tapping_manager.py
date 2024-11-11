@@ -1,5 +1,4 @@
 import subprocess
-import re
 
 
 class TouchpadTappingManager:
@@ -8,9 +7,10 @@ class TouchpadTappingManager:
     self.prop_name = prop_name
   
   def enable(self):
-    # Enable tap-to-click using xinput
-    subprocess.run(['xinput', 'set-prop', self.device_id, self.prop_name, '1'])
+    self._set('1')
 
   def disable(self):
-    # Disable tap-to-click using xinput
-    subprocess.run(['xinput', 'set-prop', self.device_id, self.prop_name, '0'])
+    self._set('0')
+
+  def _set(self, value: str):
+    subprocess.run(['xinput', 'set-prop', self.device_id, self.prop_name, value])
