@@ -16,6 +16,16 @@ class DeviceConfig:
     self.touchpad_xinput_name: str = touchpad_xinput_name
     self.touchpad_xinput_id: str = touchpad_xinput_id
 
+  def __repr__(self):
+    return (
+      f"DeviceConfig("
+      f"touchpad_tapping_enabled_prop={self.touchpad_tapping_enabled_prop}, "
+      f"usb_mouse_xinput_name={self.usb_mouse_xinput_name}, "
+      f"usb_mouse_xinput_id={self.usb_mouse_xinput_id}, "
+      f"touchpad_xinput_name={self.touchpad_xinput_name}, "
+      f"touchpad_xinput_id={self.touchpad_xinput_id})"
+    )
+
 class ConfigManager:
   CONFIG_DOT_ENV_PATH = ".env"
 

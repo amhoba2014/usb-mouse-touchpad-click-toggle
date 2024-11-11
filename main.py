@@ -1,7 +1,7 @@
 import time
 
 from source.input_device_manager import InputDeviceManager
-from source.config_manager import ConfigManager
+from source.config_manager import ConfigManager, DeviceConfig
 from source.xinput_utils import XinputUtils
 
 def main():
@@ -45,9 +45,19 @@ def main():
       return
     chosen_touchpad_device_property = touchpad_device_properties[index]
     print("The chosen device property is:", chosen_touchpad_device_property.name)
+    # Save the .env file:
+    ConfigManager.update_env_file(
+      DeviceConfig(
+        chosen_touchpad_device_property.name,
+        chosen_usb_mouse_device.name,
+        chosen_usb_mouse_device.device_id,
+        chosen_touchpad_device.name,
+        chosen_touchpad_device.device_id
+      )
+    )
     # Setup finished:
     print()
-    print("Perfect! We are setup! Let's start!")
+    print("Perfect! We are setup! Please restart the script to continue!")
     print()
 
   while True:
