@@ -36,7 +36,7 @@ The script runs in the background, checking every second for the status of the U
 3. Run the script:
 
    ```bash
-   poetry run python toggle_touchpad_click.py
+   poetry run python main.py
    ```
 
 ## Usage
