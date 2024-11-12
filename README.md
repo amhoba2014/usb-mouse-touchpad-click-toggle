@@ -4,6 +4,8 @@ This project provides a Python script that automatically enables or disables the
 
 The script runs in the background, checking every second for the status of the USB mouse and adjusting the touchpad's click behavior accordingly.
 
+![terminal window](./misc/screenshot.png "Terminal")
+
 ## Features
 
 - Detects when a USB mouse is connected or disconnected.
@@ -72,6 +74,10 @@ poetry run python main.py
 ```
 
 This script will guide you through selecting the devices and properties needed for configuration again and the `.env` file will be created accordingly.
+
+## Todo
+
+Enhance the script to handle device events by actively listening for USB mouse connection and disconnection events. This improvement would eliminate the need for polling and repeatedly parsing the xinput device list.
 
 ## License
 
